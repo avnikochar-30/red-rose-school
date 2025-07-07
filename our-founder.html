@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Red Rose School 🌹 Ranjhi, Jabalpur</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2e003e 0%, #ca709d 100%);
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: shimmer 4s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(180deg); }
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-content img {
+      height: 80px;
+      width: 80px;
+      border-radius: 50%;
+      border: 3px solid white;
+      object-fit: cover;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      background: white;
+    }
+
+    nav {
+      background: linear-gradient(135deg, #2e003e 0%, #ec70eb 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 15px 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      flex-wrap: wrap;
+    }
+
+    nav > a,
+    .dropdown > a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      padding: 12px 20px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      display: inline-block;
+      white-space: nowrap;
+    }
+
+    .dropdown > a::after {
+      content: '▼';
+      font-size: 10px;
+      margin-left: 8px;
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+
+    .dropdown:hover > a::after {
+      transform: rotate(180deg);
+    }
+
+    nav > a::before,
+    .dropdown > a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    nav > a:hover::before,
+    .dropdown > a:hover::before {
+      left: 100%;
+    }
+
+    nav > a:hover,
+    .dropdown > a:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      min-width: 200px;
+      box-shadow: 0px 8px 25px rgba(0,0,0,0.15);
+      border-radius: 10px;
+      top: 100%;
+      left: 0;
+      margin-top: 5px;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all 0.3s ease;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-content a {
+      display: block;
+      padding: 12px 16px;
+      color: #333;
+      text-decoration: none;
+      border-radius: 0;
+      font-weight: normal;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-content a:first-child {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .dropdown-content a:last-child {
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    .dropdown-content a:hover {
+      background: linear-gradient(135deg, #ca709d, #8e24aa);
+      color: white;
+      transform: translateX(5px);
+    }
+
+    .main-content {
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .page-title h1 {
+      font-size: 3em;
+      color: #2e003e;
+      margin-bottom: 10px;
+      position: relative;
+    }
+
+    .page-title h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(90deg, #ca709d, #ec70eb);
+    }
+
+    .page-title p {
+      font-size: 1.3em;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .founder-card {
+      background: white;
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+      margin-bottom: 40px;
+      position: relative;
+      animation: fadeIn 1s ease;
+    }
+
+    .founder-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, #2e003e, #ca709d, #ec70eb);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .founder-content {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    .founder-text {
+      flex: 1;
+      min-width: 300px;
+      order: 1;
+    }
+
+    .founder-image {
+      flex: 0 0 250px;
+      order: 2;
+    }
+
+    .founder-image img {
+      width: 250px;
+      height: 300px;
+      border-radius: 15px;
+      object-fit: cover;
+      border: 5px solid #f8f9fa;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .founder-text h2 {
+      font-size: 2.2em;
+      color: #2e003e;
+      margin-bottom: 15px;
+    }
+
+    .founder-text h3 {
+      font-size: 1.4em;
+      color: #ca709d;
+      margin-bottom: 20px;
+    }
+
+    .founder-text p {
+      font-size: 1.1em;
+      color: #555;
+      text-align: justify;
+      margin-bottom: 20px;
+    }
+
+    .highlight {
+      background: linear-gradient(120deg, #ca709d20, #ec70eb20);
+      padding: 20px;
+      border-left: 4px solid #ca709d;
+      border-radius: 10px;
+      font-style: italic;
+    }
+
+    .quote-section {
+      background: linear-gradient(135deg, #2e003e, #ca709d);
+      color: white;
+      padding: 60px 40px;
+      text-align: center;
+      border-radius: 20px;
+      margin: 60px 0;
+      position: relative;
+    }
+
+    footer {
+      background: linear-gradient(135deg, #2e003e 0%, #424242 100%);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .footer-section h3 {
+      color: #ca709d;
+      margin-bottom: 10px;
+    }
+
+    .footer-section p, .footer-section a {
+      color: #ccc;
+      text-decoration: none;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .footer-section a:hover {
+      color: #ca709d;
+    }
+
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 10px;
+        padding: 20px;
+      }
+
+      nav > a,
+      .dropdown > a {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 5px;
+      }
+
+      .dropdown-content {
+        position: static;
+        display: none;
+        box-shadow: none;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+        margin-top: 5px;
+      }
+
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      .dropdown-content a {
+        color: white;
+        padding: 10px 15px;
+      }
+
+      .dropdown-content a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: none;
+      }
+
+      .founder-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .founder-text,
+      .founder-image {
+        order: initial;
+      }
+
+      .founder-image img {
+        width: 200px;
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <img src="C:\Users\Hp\Downloads\images-removebg-preview.png" alt="School Logo" />
+      <div>
+        <h1>Red Rose School 🌹<br>Ranjhi, Jabalpur</h1>
+        <p>Igniting Minds | Building Futures</p>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <a href="home.html">Home</a>
+    <div class="dropdown">
+      <a href="javascript:void(0)">About Us</a>
+      <div class="dropdown-content">
+        <a href="aboutschool.html">About School</a>
+        <a href="mission-vision.html">Mission & Vision</a>
+        <a href="our-founder.html">Director's Message</a>
+      
+            
+        <a href="principal.html">Principal's Message</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <a href="javascript:void(0)">Academics</a>
+      <div class="dropdown-content">
+        <a href="admission.html">Admissions</a>
+        <a href="book.html">Age Criteria</a>
+        <a href="pattern.html">Why to choose us</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <a href="javascript:void(0)">Gallery</a>
+      <div class="dropdown-content">
+        <a href="gallery.html">Pictures</a>
+        <a href="event.html">Events</a>
+      </div>
+    </div>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <main class="main-content">
+    <div class="container">
+      <div class="page-title">
+        <h1>Our Visionary Founder</h1>
+        <p>Meet the dedicated leader who laid the foundation of Red Rose School with vision and compassion.</p>
+      </div>
+
+      <div class="founder-card">
+        <div class="founder-content">
+          <div class="founder-text">
+            <h2>🎓 Mr. Vikas Kochar</h2>
+            <h3>Founder & Chairman</h3>
+            <p>
+              <strong>Message from the Director – Red Rose School</strong><br><br>
+
+              Dear Parents, Students, and Well-Wishers,<br><br>
+
+              Welcome to Red Rose School – a place where young minds are nurtured with love, care, and purpose.<br><br>
+
+              At Red Rose, we believe that every child is like a tender bud—unique, full of potential, and waiting to blossom.
+              Just as a rose needs sunlight, water, and nurturing to bloom, our children need encouragement, values,
+              and a positive environment to grow.<br><br>
+
+              Our vision goes far beyond academics. We aim to create a space where children are not just taught but inspired;
+              where learning is not just about marks, but about meaning.<br><br>
+
+              With pride, we see our students evolve into thoughtful, responsible, and capable individuals—
+              ready to take on the world, deeply rooted in values.<br><br>
+
+              Warm regards,<br>
+              <strong>Mr. Vikas Kochar<br>Director, Red Rose School</strong>
+            </p>
+
+            <div class="highlight">
+              "Education is not just about filling minds, but igniting curiosity."
+            </div>
+          </div>
+          <div class="founder-image">
+            <img src="C:\Users\Hp\Downloads\papa.jpg" alt="Mr. Vikas Kochar" />
+          </div>
+        </div>
+      </div>
+
+      <div class="quote-section">
+        <h2>Our Foundation</h2>
+        <p>Together, Mr. and Mrs. Kochar have built Red Rose School on principles of excellence, integrity, and inclusivity.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Contact</h3>
+        <p>📍 Ranjhi, Jabalpur</p>
+        <p>📞 +91-9826598306</p>
+        <p>✉️ info@redroseschooljbp.com</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <a href="home.html">Home</a>
+        <a href="aboutschool.html">About Us</a>
+        <a href="admission.html">Admissions</a>
+        <a href="gallery.html">Gallery</a>
+      </div>
+      <div class="footer-section">
+        <h3>School Hours</h3>
+        <p>Mon–Sat: 8:00 AM – 2:00 PM</p>
+        <p>Sunday: Closed</p>
+      </div>
+    </div>
+    <hr style="margin: 20px 0; border-color: #555;" />
+    <p>&copy; 2007 Red Rose School, Ranjhi - Jabalpur</p>
+  </footer>
+
+</body>
+</html>

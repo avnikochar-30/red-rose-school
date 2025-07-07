@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Red Rose School 🌹 Ranjhi, Jabalpur</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+
+    .main-container {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      margin: 0;
+      background: white;
+    }
+
+    .side-decoration {
+      position: fixed;
+      top: 0;
+      width: 100px;
+      height: 100vh;
+      z-index: 5;
+      background: linear-gradient(180deg, rgba(202, 112, 157, 0.3) 0%, rgba(46, 0, 62, 0.3) 50%, rgba(202, 112, 157, 0.3) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      padding: 20px 0;
+    }
+
+    .side-decoration.left {
+      left: 0;
+      border-right: 3px solid rgba(202, 112, 157, 0.5);
+    }
+
+    .side-decoration.right {
+      right: 0;
+      border-left: 3px solid rgba(202, 112, 157, 0.5);
+    }
+
+    .side-decoration .decoration-item {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 24px;
+      animation: pulse 3s ease-in-out infinite;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .side-decoration .decoration-item:nth-child(even) {
+      animation-delay: 1.5s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.2); opacity: 1; }
+    }
+
+    .quick-info {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 200px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      backdrop-filter: blur(10px);
+      z-index: 6;
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .quick-info.left { left: -180px; }
+    .quick-info.right { right: -180px; }
+    .quick-info:hover { opacity: 1; transform: translateY(-50%) translateX(0); }
+    .quick-info.left:hover { left: 20px; }
+    .quick-info.right:hover { right: 20px; }
+
+    .quick-info h4 {
+      color: #b71c1c;
+      margin-bottom: 10px;
+      font-size: 16px;
+    }
+
+    .quick-info p {
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+
+    .quick-info .highlight {
+      color: #8e24aa;
+      font-weight: bold;
+    }
+
+    header {
+      background: linear-gradient(135deg, #2e003e 0%, #ca709d 100%);
+      color: white;
+      padding: 20px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: shimmer 4s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(180deg); }
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-content img {
+      height: 80px;
+      width: 80px;
+      border-radius: 50%;
+      border: 3px solid white;
+      background: white;
+      object-fit: cover;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    nav {
+      background: linear-gradient(135deg, #2e003e 0%, #ec70eb 100%);
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 15px 0;
+      position: relative;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      padding: 12px 20px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    nav a:hover::before {
+      left: 100%;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown > a {
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      min-width: 200px;
+      box-shadow: 0px 8px 25px rgba(0,0,0,0.15);
+      z-index: 1000;
+      border-radius: 10px;
+      overflow: hidden;
+      top: 100%;
+      left: 0;
+      margin-top: 5px;
+      border: 1px solid rgba(202, 112, 157, 0.3);
+    }
+
+    .dropdown-content a {
+      color: #333 !important;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      font-weight: normal;
+      transition: all 0.3s ease;
+    }
+
+    .dropdown-content a:hover {
+      background: linear-gradient(135deg, #ca709d 0%, #8e24aa 100%);
+      color: white !important;
+      transform: translateX(5px);
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+      animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .dropdown > a::after {
+      content: ' ▼';
+      font-size: 10px;
+      margin-left: 5px;
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown:hover > a::after {
+      transform: rotate(180deg);
+    }
+
+    .slideshow-container {
+      position: relative;
+      max-width: 100%;
+      height: 400px;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      margin: 0 auto;
+      padding: 0;
+      line-height: 0;
+    }
+ 
+
+    .slide {
+      display: none;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      
+    }
+
+    .slide-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      margin-top: -22px;
+      padding: 16px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.3s ease;
+      border-radius: 0 3px 3px 0;
+      background-color: rgba(0,0,0,0.5);
+      user-select: none;
+    }
+
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .dots-container {
+      text-align: center;
+      padding: 15px;
+    }
+
+    .dot {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      margin: 0 5px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+
+    .dot.active, .dot:hover {
+      background-color: #717171;
+    }
+
+    .content {
+      padding: 40px;
+      text-align: center;
+    }
+
+    .content h2 {
+      margin-bottom: 20px;
+      color: #b71c1c;
+    }
+
+    footer {
+      background: #424242;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+      
+     .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown > a {
+  padding: 10px 15px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.dropdown > a::after {
+  content: ' ▼';
+  font-size: 10px;
+  margin-left: 5px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+  z-index: 1000;
+  border-radius: 5px;
+  overflow: hidden;
+  top: 100%;
+  left: 0;
+  margin-top: 0px; /* Removed gap */
+}
+
+.dropdown-content a {
+  color: #333 !important;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-weight: normal;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Hover Seamlessness */
+.dropdown-content::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: transparent;
+}
+.slideshow-container {
+  width: 100%;
+  height: 500px; /* adjust as needed */
+  position: relative;
+  overflow: hidden;
+}
+
+.slide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: none;
+}
+
+.slide.active {
+  display: block;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top; /* change to center or bottom if needed */
+}
+
+
+  .pamphlet-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.pamphlet {
+  width: 280px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background: linear-gradient(135deg, #ca709d 0%, #8e24aa 100%);
+  transition: transform 0.3s ease;
+}
+
+.pamphlet:hover {
+  transform: scale(1.05);
+}
+
+.pamphlet img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.caption {
+  padding: 12px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  color: white;
+}
+
+
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <img src="C:\Users\Hp\Downloads\images-removebg-preview.png" alt="School Logo">
+      <div>
+        <h1>Red Rose School 🌹<br>Ranjhi, Jabalpur</h1>
+        <p>Igniting Minds | Building Futures</p>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <a href="home.html">Home</a>
+    
+    <div class="dropdown">
+      <a href="javascript:void(0)">About Us</a>
+      <div class="dropdown-content">
+        <a href="aboutschool.html">About School</a>
+        <a href="mission-vision.html">Mission & Vision</a>
+        <a href="our-founder.html">Director's Message</a>
+            
+        <a href="principal.html">Principal's Message</a>
+      </div>
+    </div>
+    
+    <div class="dropdown">
+      <a href="javascript:void(0)">Academics</a>
+      <div class="dropdown-content">
+        <a href="admission.html">Admissions</a>
+      <a href="book.html">Age criteria</a>
+    <a href="pattern.html">Why to choose us?</a></div>
+    </div>
+    <div class="dropdown">
+      <a href="javascript:void(0)">Gallery</a>
+      <div class="dropdown-content">
+        <a href="gallery.html">Pictures of various activities. </a>
+      <a href=event.html>Events happened</a>
+    </div>
+    </div>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  
+ <div class="pamphlet-container">
+  <div class="pamphlet">
+    <img src="C:\Users\Hp\Downloads\yay.webp" alt="Our Beautiful Campus">
+    <div class="caption">Our Campus</div>
+  </div>
+
+  <div class="pamphlet">
+    <img src="C:\Users\Hp\Downloads\New folder (2)\IMG-20250707-WA0006.jpg" alt="Our Beautiful Campus">
+    <div class="caption">Kindergarten Students</div>
+  </div>
+   <div class="pamphlet">
+    <img src="C:\Users\Hp\Downloads\primary.jpg" alt="Our Beautiful Campus">
+    <div class="caption">Primary Section Students</div>
+  </div>
+  <div class="pamphlet">
+    <img src="https://lh3.googleusercontent.com/p/AF1QipNImNibIMgkXq5enO_sUk2Am5fpr-ifk1PHtfwU=s1360-w1360-h1020-rw" alt="Modern Classrooms">
+    <div class="caption">Smart Class</div>
+  </div>
+   <div class="pamphlet">
+    <img src="C:\Users\Hp\Downloads\WhatsApp Image 2025-07-04 at 20.25.35_d97e8437.jpg" alt="Modern Classrooms">
+    <div class="caption">Classroom</div>
+  </div>
+   <div class="pamphlet">
+    <img src="C:\Users\Hp\Downloads\New folder\IMG-20250706-WA0009.jpg" alt="Modern Classrooms">
+    <div class="caption">Various activities</div>
+  </div>
+  <!-- Add more pamphlets as needed -->
+</div>
+</body>
+
+  
+
+
+  </style>
+</head>
+<body>
+
+
+  <!-- Quick info panels -->
+  <div class="quick-info left">
+    <h4>🌹 Quick Facts</h4>
+    <p><span class="highlight">Founded:</span> 2007</p>
+    <p><span class="highlight">Students:</span> 700+</p>
+    <p><span class="highlight">Classrooms:</span> 25+</p>
+    <p><span class="highlight">Experience:</span> 18+ Years</p>
+  </div>
+
+  <div class="quick-info right">
+    <h4>🏫 School Info</h4>
+    <p><span class="highlight">Timings:</span> 8AM - 2PM</p>
+    <p><span class="highlight">Days:</span> Mon - Sat</p>
+    <p><span class="highlight">Location:</span> Ranjhi, Jabalpur</p>
+    <p><span class="highlight">Contact:</span> +91-9826598306</p>
+  </div>
+
+
+ 
+
+   
+  <style>
+footer {
+      background: linear-gradient(135deg, #2e003e 0%, #424242 100%);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      animation: footerShimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes footerShimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 15px;
+      color: #ca709d;
+      font-size: 20px;
+    }
+
+    .footer-section p, .footer-section a {
+      color: #ccc;
+      text-decoration: none;
+      margin-bottom: 10px;
+      display: block;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      color: #ca709d;
+    }
+     .hero-section {
+      background: linear-gradient(rgba(46, 0, 62, 0.8), rgba(202, 112, 157, 0.8)),
+                  url('https://images.unsplash.com/photo-1523050854058-8df90110c9d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+      margin-bottom: 40px;
+    }
+
+    .hero-section h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .hero-section p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .cta-button {
+      background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+      color: white;
+      padding: 15px 30px;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      font-size: 1.1rem;
+      display: inline-block;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    }
+
+    .features-section {
+      padding: 60px 20px;
+      background: white;
+      margin-bottom: 40px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .feature-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    .stats-section {
+      background: linear-gradient(135deg, #2e003e, #ca709d);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 10px;
+      margin-top: 40px;
+    }
+
+    .stat-item {
+      padding: 20px;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .news-section {
+      background: white;
+      padding: 60px 20px;
+      margin-bottom: 40px;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .news-card {
+      background: #f8f9fa;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .news-card img {
+      width: 100%;
+      height: 200px;
+    
+      object-fit: contain;
+  
+    }
+
+    .news-content {
+      padding: 20px;
+    }
+
+    .news-date {
+      color: #666;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .news-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #2e003e;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #2e003e;
+      margin-bottom: 20px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #666;
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    #splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffe6f0, #fff0f5); /* Soft pink gradient */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  animation: fadeOut 1.2s ease-in-out 3.5s forwards; /* fade out after 3.5s */
+}
+
+.splash-text {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #c2185b; /* deep rose */
+  text-align: center;
+  font-family: 'Segoe UI', cursive;
+  padding: 30px;
+  border: 5px double #d63384;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  box-shadow: 0 0 20px #ffaad4;
+  animation: scaleIn 2s ease-out;
+}
+
+@keyframes scaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) rotate(-10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+</style>
+<body>
+  <body>
+  <div id="splash-screen">
+    <h1 class="splash-text">Welcome to Red Rose School 🌹</h1>
+  </div>
+
+ <div id="splash-screen">
+  <h1 class="splash-text">✨ Welcome to Red Rose School 🌹 ✨</h1>
+</div>
+
+
+
+   <section class="hero-section">
+    
+    <h1>Welcome to Red Rose School</h1>
+    <p>Where every child blooms into their full potential. We provide quality education with a focus on character building, creativity, and academic excellence.</p>
+    <a href="#" class="cta-button">OUR MOTTO IS<BR> CARING FOR CHILDREN </a>
+  </section>
+
+  <section class="features-section">
+    <div class="container">
+      <h2 class="section-title">Why Choose Red Rose School?</h2>
+      <p class="section-subtitle">We are committed to providing holistic education that nurtures every aspect of your child's development</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎓</div>
+          <h3>Quality Education</h3>
+          <p>Experienced teachers providing excellent academic foundation with modern teaching methods and personalized attention.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🏅</div>
+          <h3>Character Building</h3>
+          <p>Focus on moral values, ethics, and character development to shape responsible future citizens.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>Creative Learning</h3>
+          <p>Encouraging creativity through arts, music, drama, and innovative learning approaches.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚽</div>
+          <h3>Sports & Activities</h3>
+          <p>Comprehensive sports programs and extracurricular activities for physical and mental development.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔬</div>
+          <h3>Modern Facilities</h3>
+          <p>Well-equipped laboratories, library, computer lab, and modern infrastructure for enhanced learning.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👨‍👩‍👧‍👦</div>
+          <h3>Family Environment</h3>
+          <p>Nurturing and caring environment where every child feels valued and supported.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="achievements-section">
+  <h2>Our Achievements</h2>
+  <div class="achievement-container">
+    <div class="achievement-box">
+      <h3>2000+</h3>
+      <p>Satisfied Parents</p>
+    </div>
+    <div class="achievement-box">
+      <h3>1000+</h3>
+      <p>Happy Students</p>
+    </div>
+    <div class="achievement-box">
+      <h3>18+</h3>
+      <p>Years of Excellence</p>
+    </div>
+    <div class="achievement-box">
+      <h3>20+</h3>
+      <p>Expert Teachers</p>
+    </div>
+    <div class="achievement-box">
+      <h3>95%</h3>
+      <p>Success Rate</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .achievements-section {
+    background: linear-gradient(135deg, #4B024F, #B455A0);
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  .achievements-section h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    font-weight: bold;
+  }
+
+  .achievement-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .achievement-box {
+    flex: 1 1 150px;
+    min-width: 150px;
+  }
+
+  .achievement-box h3 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  .achievement-box p {
+    font-size: 1.1em;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .achievement-container {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+</style>
+
+
+  <section class="news-section">
+    <div class="container">
+      <h2 class="section-title">Latest News & Events</h2>
+      <p class="section-subtitle">Stay updated with our latest activities and achievements</p>
+      
+      <div class="news-grid">
+        <div class="news-card">
+          <img src="C:\Users\Hp\Downloads\Screenshot 2025-07-04 211634.png" alt="Sports Day">
+          <div class="news-content">
+            <div class="news-date">March 18,2025</div>
+            <div class="news-title">GRADUATION DAY</div>
+            <p>As students step on stage to receive their certificates, they carry with them years of hard work, laughter, challenges, and dreams. The atmosphere is filled with pride, joy, and a touch of bittersweet emotion, as they prepare to leave behind the familiar classrooms and corridors that shaped their journey.</p>
+          </div>
+        </div>
+        <div class="news-card">
+          <img src="C:\Users\Hp\OneDrive\ドキュメント\sports.png" alt="Sports Day">
+          <div class="news-content">
+            <div class="news-date">January 22, 2025</div>
+            <div class="news-title">SPORTS DAY</div>
+            <p>Students The playground comes alive with colorful flags, cheers, and the sound of running feet as students participate in various races, games, and athletic events. It's a day where talent shines, leadership is tested, and sportsmanship takes center stage.</p>
+          </div>
+        </div>
+        <div class="news-card">
+          <img src="C:\Users\Hp\Downloads\baisakhi.jpg" alt="Cultural Program">
+          <div class="news-content">
+            <div class="news-date">April 15, 2025</div>
+            <div class="news-title">BAISAKHI CELEBRATION</div>
+            <p>Baisakhi, a vibrant harvest festival, is celebrated with great enthusiasm in our school.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>Contact Information</h3>
+            <p>📍 Ranjhi, Jabalpur, MP</p>
+            <p>📞 +91-9826598306</p>
+            <p>✉️ info@redroseschooljbp.com</p>
+          </div>
+          <div class="footer-section">
+            <h3>Quick Links</h3>
+            <a href="#">About Us</a>
+            <a href="#">Admissions</a>
+            <a href="#">Faculty</a>
+            <a href="#">Gallery</a>
+          </div>
+          <div class="footer-section">
+            <h3>School Hours</h3>
+            <p>Monday - Saturday: 8:00 AM - 2:00 PM</p>
+            <p>Sunday: Closed</p>
+          </div>
+        </div>
+        <hr style="border-color: #666; margin: 20px 0;">
+        <p>&copy; 2007 Red Rose School, Ranjhi - Jabalpur. All rights reserved.</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
+<script>
+  window.addEventListener("load", function () {
+    setTimeout(function () {
+      document.getElementById("splash-screen").style.display = "none";
+      document.getElementById("main-content").style.display = "block";
+    }, 3500); // Show splash for 4.5 seconds
+  });
+</script>
+
+</body>
+
+</html>

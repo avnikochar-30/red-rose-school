@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Red Rose School 🌹 Ranjhi, Jabalpur</title>
+
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: #f7f7f7;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(to bottom right, #2e003e, #ca709d);
+      color: white;
+      padding: 20px 40px;
+      text-align: center;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .header-content img {
+      height: 80px;
+      width: 80px;
+      border-radius: 50%;
+      border: 2px solid white;
+      background: white;
+      object-fit: cover;
+    }
+
+    nav {
+      background: linear-gradient(to bottom right, #2e003e, #ec70eb);
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 10px 0;
+      position: relative;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Dropdown Styles */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown > a {
+      padding: 10px 15px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: white;
+      min-width: 200px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1000;
+      border-radius: 5px;
+      overflow: hidden;
+      top: 100%;
+      left: 0;
+      margin-top: 5px;
+    }
+
+    .dropdown-content a {
+      color: #333 !important;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      font-weight: normal;
+      transition: background-color 0.3s ease;
+    }
+
+    .dropdown-content a:hover {
+      background-color: #f1f1f1;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown > a::after {
+      content: ' ▼';
+      font-size: 10px;
+      margin-left: 5px;
+    }
+
+    .slideshow-container {
+      position: relative;
+      max-width: 100%;
+      height: 400px;
+      margin: 20px auto;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .slide {
+      display: none;
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .slide-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,0.7));
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .prev, .next {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      margin-top: -22px;
+      padding: 16px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.3s ease;
+      border-radius: 0 3px 3px 0;
+      background-color: rgba(0,0,0,0.5);
+      user-select: none;
+    }
+
+    .next {
+      right: 0;
+      border-radius: 3px 0 0 3px;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .dots-container {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .dot {
+      cursor: pointer;
+      height: 15px;
+      width: 15px;
+      margin: 0 5px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+
+    .dot.active, .dot:hover {
+      background-color: #717171;
+    }
+
+    .content {
+      padding: 40px;
+      text-align: center;
+    }
+
+    .content h2 {
+      margin-bottom: 20px;
+      color: #b71c1c;
+    }
+
+    footer {
+      background: #424242;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .dropdown-content {
+        position: static;
+        display: none;
+        box-shadow: none;
+        background-color: rgba(255, 255, 255, 0.1);
+        margin-top: 0;
+      }
+      
+      .dropdown.active .dropdown-content {
+        display: block;
+      }
+      
+      .header-content {
+        flex-direction: column;
+        gap: 15px;
+      }
+    }
+    .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown > a {
+  padding: 10px 15px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.dropdown > a::after {
+  content: ' ▼';
+  font-size: 10px;
+  margin-left: 5px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1000;
+  border-radius: 5px;
+  overflow: hidden;
+  top: 100%;
+  left: 0;
+  margin-top: 0px; /* Removed the gap */
+}
+
+.dropdown-content a {
+  color: #333 !important;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-weight: normal;
+  transition: background-color 0.3s ease;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Add padding to create seamless hover area */
+.dropdown-content::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: transparent;
+}
+.mv-section {
+  background: linear-gradient(to bottom right, #fff0f5, #fce4ec);
+  padding: 60px 20px;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.mv-header {
+  max-width: 900px;
+  margin: auto;
+}
+
+.mv-banner {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 18px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.5s ease;
+}
+
+.mv-banner:hover {
+  transform: scale(1.02);
+}
+
+.mv-header h2 {
+  font-size: 36px;
+  color: #7b1fa2;
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.mv-quote {
+  font-size: 18px;
+  color: #444;
+  max-width: 750px;
+  margin: 10px auto 30px;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.mv-cards {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.mv-card {
+  background-color: white;
+  padding: 35px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.mv-card h3 {
+  font-size: 24px;
+  color: #8e24aa;
+  margin-bottom: 15px;
+}
+
+.mv-card p {
+  font-size: 17px;
+  color: #555;
+  line-height: 1.7;
+}
+
+.mv-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 1s ease forwards;
+}
+
+.fade-in.delay {
+  animation-delay: 0.4s;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .mv-header h2 {
+    font-size: 26px;
+  }
+
+  .mv-card {
+    margin-top: 20px;
+  }
+
+  .mv-cards {
+    gap: 20px;
+  }
+}
+.custom-admission-section {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  padding: 60px 40px;
+  background: linear-gradient(to right, #fff0f5, #fce4ec);
+}
+
+.custom-admission-text {
+  flex: 1;
+  max-width: 600px;
+  background-color: #ffffff;
+  padding: 35px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease;
+}
+
+.custom-admission-text:hover {
+  transform: translateY(-5px);
+}
+
+.custom-admission-text h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #7b1fa2;
+  margin-bottom: 10px;
+}
+
+.custom-underline {
+  width: 70px;
+  height: 4px;
+  border: none;
+  background-color: #ff4081;
+  margin: 10px 0 30px;
+  border-radius: 2px;
+}
+
+.custom-admission-text p {
+  font-size: 17px;
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.custom-admission-image {
+  flex: 1;
+  max-width: 500px;
+}
+
+.custom-admission-image img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.custom-admission-image img:hover {
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .custom-admission-section {
+    flex-direction: column;
+    padding: 40px 20px;
+  }
+
+  .custom-admission-text, .custom-admission-image {
+    max-width: 100%;
+  }
+
+  .custom-admission-text {
+    padding: 25px;
+  }
+
+  .custom-admission-text h2 {
+    font-size: 26px;
+  }
+
+  .custom-admission-text p {
+    font-size: 16px;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <img src="C:\Users\Hp\Downloads\images-removebg-preview.png" alt="School Logo">
+      <div>
+        <h1>Red Rose School 🌹<br>Ranjhi, Jabalpur</h1>
+        <p>Igniting Minds | Building Futures</p>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <a href="home.html">Home</a>
+    
+    <div class="dropdown">
+      <a href="javascript:void(0)">About Us</a>
+      <div class="dropdown-content">
+        <a href="aboutschool.html">About School</a>
+        <a href="mission-vision.html">Mission & Vision</a>
+        <a href="our-founder.html">Director's Message</a>
+            
+        <a href="principal.html">Principal's Message</a>
+      </div>
+    </div>
+    
+    <div class="dropdown">
+      <a href="javascript:void(0)">Academics</a>
+      <div class="dropdown-content">
+        <a href="admission.html">Admissions</a>
+      <a href="book.html">Age criteria</a>
+    <a href="pattern.html">Why to choose us</a></div>
+    </div>
+    
+     <div class="dropdown">
+      <a href="javascript:void(0)">Gallery</a>
+      <div class="dropdown-content">
+        <a href="gallery.html">Pictures of various activities. </a>
+      <a href=event.html>Events happened</a>
+      </div>
+    </div>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <style>
+   body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fdf5f8;
+      color: #333;
+      padding: 0;
+      text-align: center;
+    }
+   
+    .graduation-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .graduation-gallery img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .graduation-gallery img:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <h1>Festival of colours celbration🌸</h1><br>
+  <div class="graduation-gallery">
+    <img src="C:\Users\Hp\Downloads\New folder\IMG-20250706-WA0038.jpg" alt="Stage">
+     <img src="C:\Users\Hp\Downloads\New folder\IMG-20250706-WA0037.jpg" alt="Group Photo">
+      <img src="C:\Users\Hp\Downloads\New folder\IMG-20250706-WA0036.jpg" alt="Certificates">
+    <img src="C:\Users\Hp\Downloads\New folder\IMG-20250706-WA0039.jpg" alt="Group Photo">
+    
+    
+    
+    
+    
+  </div>

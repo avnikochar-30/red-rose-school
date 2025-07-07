@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Red Rose School 🌹 Ranjhi, Jabalpur</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    /* Header Styles */
+    header {
+      background: linear-gradient(135deg, #2e003e 0%, #ca709d 100%);
+      color: white;
+      padding: 20px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      animation: shimmer 4s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(180deg); }
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-content img {
+      height: 80px;
+      width: 80px;
+      border-radius: 50%;
+      border: 3px solid white;
+      background: white;
+      object-fit: cover;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Navigation Styles */
+    nav {
+      background: linear-gradient(135deg, #2e003e 0%, #ec70eb 100%);
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 15px 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+      padding: 12px 20px;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    nav a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    nav a:hover::before {
+      left: 100%;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Dropdown Styles */
+    .dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .dropdown > a {
+      padding: 12px 20px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .dropdown > a::after {
+      content: ' ▼';
+      font-size: 10px;
+      margin-left: 5px;
+      transition: transform 0.3s ease;
+    }
+
+    .dropdown:hover > a::after {
+      transform: rotate(180deg);
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+      min-width: 200px;
+      box-shadow: 0px 8px 25px rgba(0,0,0,0.15);
+      z-index: 1000;
+      border-radius: 10px;
+      overflow: hidden;
+      top: 100%;
+      left: 0;
+      margin-top: 5px;
+      border: 1px solid rgba(202, 112, 157, 0.3);
+    }
+
+    .dropdown-content::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: transparent;
+    }
+
+    .dropdown-content a {
+      color: #333 !important;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      font-weight: normal;
+      transition: all 0.3s ease;
+      border-radius: 0;
+    }
+
+    .dropdown-content a:hover {
+      background: linear-gradient(135deg, #ca709d 0%, #8e24aa 100%);
+      color: white !important;
+      transform: translateX(5px);
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+      animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Age Criteria Section */
+    .age-criteria-section {
+      padding: 60px 30px;
+      background: linear-gradient(to right, #fce4ec, #fff0f5);
+      text-align: center;
+    }
+
+    .age-criteria-section h2 {
+      font-size: 32px;
+      color: #7b1fa2;
+      margin-bottom: 30px;
+    }
+
+    .age-table {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .age-column {
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      width: 200px;
+      transition: transform 0.3s ease;
+    }
+
+    .age-column:hover {
+      transform: scale(1.03);
+    }
+
+    .age-header {
+      background: linear-gradient(to bottom right, #7b1fa2, #ce93d8);
+      color: white;
+      font-weight: bold;
+      padding: 14px 0;
+      font-size: 18px;
+      border-bottom: 3px solid #f8bbd0;
+    }
+
+    .age-column div {
+      padding: 12px 0;
+      border-bottom: 1px solid #f1f1f1;
+      font-size: 16px;
+      color: #333;
+    }
+
+    .age-column div:last-child {
+      border-bottom: none;
+    }
+
+    /* Footer Styles */
+    footer {
+      background: linear-gradient(135deg, #2e003e 0%, #424242 100%);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      animation: footerShimmer 3s ease-in-out infinite;
+    }
+
+    @keyframes footerShimmer {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-section h3 {
+      margin-bottom: 15px;
+      color: #ca709d;
+      font-size: 20px;
+    }
+
+    .footer-section p, .footer-section a {
+      color: #ccc;
+      text-decoration: none;
+      margin-bottom: 10px;
+      display: block;
+      transition: color 0.3s ease;
+    }
+
+    .footer-section a:hover {
+      color: #ca709d;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .dropdown-content {
+        position: static;
+        display: none;
+        box-shadow: none;
+        background: rgba(255, 255, 255, 0.9);
+        margin-top: 0;
+      }
+
+      .dropdown.active .dropdown-content {
+        display: block;
+      }
+
+      .age-table {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .age-column {
+        width: 90%;
+      }
+
+      .age-criteria-section h2 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <img src="C:\Users\Hp\Downloads\images-removebg-preview.png" alt="School Logo">
+      <div>
+        <h1>Red Rose School 🌹<br>Ranjhi, Jabalpur</h1>
+        <p>Igniting Minds | Building Futures</p>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <a href="home.html">Home</a>
+    
+    <div class="dropdown">
+      <a href="javascript:void(0)">About Us</a>
+      <div class="dropdown-content">
+        <a href="aboutschool.html">About School</a>
+        <a href="mission-vision.html">Mission & Vision</a>
+         <a href="our-founder.html">Director's Message</a>
+            
+        <a href="principal.html">Principal's Message</a>
+      </div>
+    </div>
+    
+    <div class="dropdown">
+      <a href="javascript:void(0)">Academics</a>
+      <div class="dropdown-content">
+        <a href="admission.html">Admissions</a>
+        <a href="book.html">Age criteria</a>
+        <a href="pattern.html">Why to choose us</a>
+      </div>
+    </div>
+    
+    <div class="dropdown">
+      <a href="javascript:void(0)">Gallery</a>
+      <div class="dropdown-content">
+        <a href="gallery.html">Pictures of various activities</a>
+        <a href="event.html">Events happened</a>
+        
+      </div>
+    </div>
+    
+    
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <section class="age-criteria-section">
+    <h2>🎯 Age Criteria - Admissions 2025</h2>
+    <div class="age-table">
+      <div class="age-column">
+        <div class="age-header">📋 Class</div>
+        <div>Nursery</div>
+        <div>Lower Kindergarten</div>
+        <div>Upper Kindergarten</div>
+        <div>Class 1</div>
+        <div>Class 2</div>
+        <div>Class 3</div>
+        <div>Class 4</div>
+        <div>Class 5</div>
+        <div>Class 6</div>
+        <div>Class 7</div>
+        <div>Class 8</div>
+      </div>
+      <div class="age-column">
+        <div class="age-header">🎂 Min Age</div>
+        <div>3 Years</div>
+        <div>4 Years</div>
+        <div>5 Years</div>
+        <div>6 Years</div>
+        <div>7 Years</div>
+        <div>8 Years</div>
+        <div>9 Years</div>
+        <div>10 Years</div>
+        <div>11 Years</div>
+        <div>12 Years</div>
+        <div>13 Years</div>
+      </div>
+      <div class="age-column">
+        <div class="age-header">🎉 Max Age</div>
+        <div>4 Years</div>
+        <div>5 Years</div>
+        <div>6 Years</div>
+        <div>7 Years</div>
+        <div>8 Years</div>
+        <div>9 Years</div>
+        <div>10 Years</div>
+        <div>11 Years</div>
+        <div>12 Years</div>
+        <div>13 Years</div>
+        <div>14 Years</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3>Contact Information</h3>
+        <p>📍 Ranjhi, Jabalpur, MP</p>
+        <p>📞 +91-9826598306</p>
+        <p>✉️ info@redroseschooljbp.com</p>
+      </div>
+      <div class="footer-section">
+        <h3>Quick Links</h3>
+        <a href="#">About Us</a>
+        <a href="#">Admissions</a>
+        <a href="#">Faculty</a>
+        <a href="#">Gallery</a>
+      </div>
+      <div class="footer-section">
+        <h3>School Hours</h3>
+        <p>Monday - Saturday: 8:00 AM - 2:00 PM</p>
+        <p>Sunday: Closed</p>
+      </div>
+    </div>
+    <hr style="border-color: #666; margin: 20px 0;">
+    <p>&copy; 2007 Red Rose School, Ranjhi - Jabalpur. All rights reserved.</p>
+  </footer>
+</body>
+</html>
